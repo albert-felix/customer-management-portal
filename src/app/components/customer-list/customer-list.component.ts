@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-  a = [1,2,3,4,5,6,7,8]
+  a = ['male','male', 'female', 'male', 'female','female', 'male', 'female']
 
   constructor() { }
 
