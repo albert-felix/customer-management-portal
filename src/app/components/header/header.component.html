@@ -2,18 +2,18 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="/home">Customer Management Portal</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" routerLink="/home">Customer Management Portal</a></mdb-navbar-brand>
   
     <!-- Collapsible content -->
     <links>
   
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect href="/customer-list">Customer Details<span class="sr-only">(current)</span></a>
+        <li class="nav-item " routerLinkActive="active">
+          <a class="nav-link waves-light " mdbWavesEffect  routerLink="/customer-list">Customer List</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect href="/new-customer">New Customer</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link waves-light" mdbWavesEffect  routerLink="/new-customer">New Customer</a>
         </li>
 
       </ul>

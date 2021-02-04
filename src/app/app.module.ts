@@ -8,17 +8,21 @@ import { HomeComponent } from './components/home/home.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerDetailComponent,
+    CustomerNewComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule

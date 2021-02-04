@@ -1,0 +1,43 @@
+<div class="container" >
+    <form class="text-center  border-light p-5" [formGroup]="customerForm" (ngSubmit)="addCustomer()" >
+        <p class="h4 mb-4">New Customer Form</p>
+        
+        <p style="text-align: left;">Personal Details</p>
+        <hr/>
+
+        <input type="text" id="name" class="form-control mb-4" formControlName="name" placeholder="Name" required>
+        <input type="number" id="age" class="form-control mb-4" formControlName="age" placeholder="Age" required>
+        <select type="text" id="gender" class="form-control mb-4" formControlName="gender" placeholder="Gender" required>
+            <option disabled value>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <select type="text" id="location" class="form-control mb-4" formControlName="location" placeholder="Location" required>
+            <option disabled value>Select Location</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Pune">Pune</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+        </select>
+        <input type="email" id="email" class="form-control mb-4" formControlName="email" placeholder="E-mail" required>
+        <input type="number" id="phone" class="form-control mb-4" formControlName="phone" placeholder="Mobile Number" required>
+      
+        <p style="text-align: left;">Order Details</p>
+        <hr/>
+        
+        <div formArrayName="orders">
+                <div class="orders" *ngFor="let order of orders.controls; index as i" [formGroupName]="i">
+                    <input  type="text" id="item" class="form-control mb-4" formControlName="order" placeholder="Item Name"  required>
+                    <input style="max-width: 200px;" type="number" id="price" class="form-control mb-4" formControlName="price" placeholder="Price"  required>
+                    <button style="margin: 0 0 24px 5px;" class="btn btn-dark btn-sm" (click)="deleteOrder(i)" type="button">X</button>
+                </div>
+               
+            <button (click)="addOrder()" mdbBtn color="dark"  type="button">Add Order</button>
+        </div>
+        
+        <button [disabled]="!isFormValid" mdbBtn color="info" block="true" class="my-4" type="submit">Create Customer</button>
+        
+    </form>
+
+</div>
