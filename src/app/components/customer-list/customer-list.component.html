@@ -6,17 +6,17 @@
     <div>
           <div class="container">
             <div class="row">
-              <div class="col-sm" class="card-display" *ngFor="let c of a">
+              <div class="col-sm" class="card-display" *ngFor="let customer of customers; index as i">
                 <mdb-card >
                     <mdb-card-body>
                       <mdb-card-title>
-                        <h4>Albert Felix</h4>
+                        <a><h4 (click)="getCustomerInfo(i)" class="text-primary">{{customer.name}}</h4></a>
                       </mdb-card-title>
                       <div style="display: flex;">
-                          <img style="margin-right: 15px;" src='{{"/assets/images/" + c + ".jpeg"}}' alt="" width="50" height="50">
+                          <img style="margin-right: 15px;" src='{{"/assets/images/" + customer.gender.toLowerCase() + ".jpeg"}}' alt="" width="50" height="50">
                           <div>
-                              <mdb-card-text> Location </mdb-card-text>
-                              <mdb-card-text> View Details................ </mdb-card-text>
+                              <mdb-card-text> {{customer.location}} </mdb-card-text>
+                              <mdb-card-text class="text-info" > <a (click)="getCustomerInfo(i)" >View Orders</a>  </mdb-card-text>
                           </div>
                       </div>
                     </mdb-card-body>

@@ -1,5 +1,5 @@
 <div class="container p-4" >
-    <div class="jumbotron hoverable p-4">
+    <div class="jumbotron hoverable p-4" *ngFor="let customer of customerInfo">
         <h3>Customer Information</h3>
         <!-- Grid row -->
         <div class="row">
@@ -9,10 +9,7 @@
             
             <!-- Featured image -->
             <div class="view overlay waves-light" mdbWavesEffect>
-              <img src='{{"/assets/images/" + "male" + ".jpeg"}}' class="img-fluid" alt="Customer photo">
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+              <img src='{{"/assets/images/" + customer.gender.toLowerCase() + ".jpeg"}}' class="img-fluid" alt="Customer photo">
             </div>
       
           </div>
@@ -21,22 +18,40 @@
           <!-- Grid column -->
           <div class="col-md-7 text-md-left ml-3 mt-3">
       
-            <h4 class="h4 mb-4">Personal Info</h4><hr/>
-            <div class="p-4">
-                <p>Name : </p>
-                <p>Age : </p>
-                <p>Gender : </p>
-                <p>Location : </p>
-                <p>Email : </p>
-                <p>Phone : </p>
+            <h4 class="h4 mb-4 text-primary">Personal Info</h4><hr/>
+            <div class="p-4" >
+                <p>Name : {{customer.name}}</p>
+                <p>Age : {{customer.age}}</p>
+                <p>Gender : {{customer.gender}}</p>
+                <p>Location : {{customer.location}}</p>
+                <p>Email : {{customer.email}}</p>
+                <p>Phone : {{customer.phone}}</p>
             </div>
             
-            <h4 class="h4 mb-4">Order Details</h4><hr/>
-            <div class="p-4">
+            <h4 class="h4 mb-4 text-primary">Order Details</h4><hr/>
+            <div class="p-4" *ngFor="let customer of customerInfo">
+                <div >
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Item</th>
+                                <th scope="col">Price (Rs)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of customer.orders; index as ind">
+                                <th scope="row">{{ind + 1}}</th>
+                                <td>{{order.item}}</td>
+                                <td>{{order.price}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </div>
 
-
+                </div>
             </div>
-
       
           </div>
           <!-- Grid column -->

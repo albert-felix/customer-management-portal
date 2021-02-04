@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
     email: new FormControl(""),
     password: new FormControl("")
   })
+  isLoggedIn: boolean = false;
 
   constructor() { }
 
