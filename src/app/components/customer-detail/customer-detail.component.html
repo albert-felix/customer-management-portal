@@ -1,6 +1,9 @@
 <div class="container p-4" >
     <div class="jumbotron hoverable p-4" *ngFor="let customer of customerInfo">
+      <div class="cusInfo">
         <h3>Customer Information</h3>
+        <button mdbBtn color="info"  class="my-4" (click)="editCustomer()">Edit Customer</button>
+      </div>
         <!-- Grid row -->
         <div class="row">
         

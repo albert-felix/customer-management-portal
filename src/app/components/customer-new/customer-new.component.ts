@@ -26,14 +26,10 @@ export class CustomerNewComponent implements OnInit {
     ])
   });
   isFormValid: boolean;
-  isNewCustomer: boolean = true;
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    if(this.router.url !== '/new-customer'){
-      this.isNewCustomer = false;
-    }
   }
 
   ngDoCheck(){
