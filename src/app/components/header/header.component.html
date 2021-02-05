@@ -8,7 +8,7 @@
     <links>
   
       <!-- Links -->
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
         <li class="nav-item " routerLinkActive="active">
           <a class="nav-link waves-light " mdbWavesEffect  routerLink="/customer-list">Customer List</a>
         </li>
@@ -21,12 +21,17 @@
       <!-- Links -->
   
       <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
+        <li *ngIf="isLoggedIn" style="margin-top: 18px; color: white;">
+          <h5 *ngIf="isManager">Manager</h5>
+          <h5 *ngIf="!isManager">Agent</h5>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
           <a class="nav-link">
-            <mdb-icon fab icon="twitter"></mdb-icon>
+            <button class="btn-sm" mdbBtn color="info" (click)="logout()">Logout</button>
           </a>
         </li>
       </ul>
+      
     </links>
     <!-- Collapsible content -->
   

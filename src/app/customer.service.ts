@@ -8,6 +8,8 @@ export class CustomerService {
 
   private REST_API = "http://localhost:3000";
   index: number;
+  isLoggedIn: boolean = false;
+  isManager: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +27,18 @@ export class CustomerService {
 
   public editCustomer(body, headers){
     return this.http.post(this.REST_API + "/customer/edit/" + this.index, body, {headers})
+  }
+
+  public loginUser(body, headers){
+    return this.http.post(this.REST_API + "/user/login", body, {headers})
+  }
+
+  public userLogged(){
+    this.isLoggedIn = true;
+  }
+
+  public managerLogged(){
+    this.isManager = true;
   }
   
 }

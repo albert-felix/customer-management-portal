@@ -3,7 +3,7 @@
         <h2>Customer Management Portal</h2>
         <h3>Welcomes You !</h3>
     </div>
-    <form class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="login()">
+    <form *ngIf="!isLoggedIn" class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="login()">
         <p class="h4 mb-4">Sign in</p>
 
         <input type="email" id="loginEmail" class="form-control mb-4" formControlName="email" placeholder="E-mail">

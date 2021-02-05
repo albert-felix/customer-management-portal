@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/customer.service';
 export class CustomerDetailComponent implements OnInit {
 
   customerInfo = [];
+  isManager: boolean = false;
 
   constructor(private customerService: CustomerService, private router: Router) { }
 
@@ -17,6 +18,10 @@ export class CustomerDetailComponent implements OnInit {
     this.customerService.getCustomerInfo().subscribe(data => {
       this.customerInfo.push(data['customer'])
     })
+  }
+
+  ngDoCheck(){
+    this.isManager = this.customerService.isManager;
   }
 
   editCustomer(){

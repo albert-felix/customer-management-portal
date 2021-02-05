@@ -1,5 +1,8 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/customer.service';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +17,31 @@ export class HomeComponent implements OnInit {
   })
   isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  ngDoCheck(){
+    this.isLoggedIn = this.customerService.isLoggedIn;
+  }
+
   login(){
-    console.log(this.loginForm.value)
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    const body = this.loginForm.value;
+    this.customerService.loginUser(body, headers).subscribe(data => {
+      if(data['status'] === 'SUCCESS'){
+        if(data['isManager']){
+          this.customerService.managerLogged()
+        }
+        this.customerService.userLogged()
+        alert("Successfully Logged In")
+        // this.router.navigate(['/customer-list'])
+      }
+      else{
+        alert("Something went wrong")
+      }
+    })
   }
 
 }
