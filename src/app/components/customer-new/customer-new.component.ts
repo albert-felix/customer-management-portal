@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import {HttpHeaders} from '@angular/common/http'
 import { CustomerService } from 'src/app/customer.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-new',
@@ -47,7 +46,6 @@ export class CustomerNewComponent implements OnInit {
         alert("Something Went Wrong")
       }
     })
-    console.log(this.customerForm.value)
   }
 
   get orders(): FormArray{

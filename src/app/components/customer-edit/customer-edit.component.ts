@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import {HttpHeaders} from '@angular/common/http'
 import { CustomerService } from 'src/app/customer.service';
-
 
 @Component({
   selector: 'app-customer-edit',
@@ -74,7 +74,16 @@ export class CustomerEditComponent implements OnInit {
   }
 
   editCustomer(){
-    
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    const body = this.customerForm.value;
+    this.customerService.editCustomer(body, headers).subscribe(data => {
+      if(data['status'] == 'SUCCESS'){
+        alert("Customer Information Updated Successfully")
+      }
+      else{
+        alert("Something Went Wrong")
+      }
+    })
   }
 
 }

@@ -22,5 +22,9 @@ export class CustomerService {
   public addCustomer(body, headers){
     return this.http.post(this.REST_API + "/customer/add", body, {headers})
   }
+
+  public editCustomer(body, headers){
+    return this.http.post(this.REST_API + "/customer/edit/" + this.index, body, {headers})
+  }
   
 }
