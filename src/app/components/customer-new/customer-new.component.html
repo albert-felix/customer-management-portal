@@ -28,7 +28,7 @@
         
         <div formArrayName="orders">
                 <div class="orders" *ngFor="let order of orders.controls; index as i" [formGroupName]="i">
-                    <input  type="text" id="item" class="form-control mb-4" formControlName="order" placeholder="Item Name"  required>
+                    <input  type="text" id="item" class="form-control mb-4" formControlName="item" placeholder="Item Name"  required>
                     <input style="max-width: 200px;" type="number" id="price" class="form-control mb-4" formControlName="price" placeholder="Price"  required>
                     <button style="margin: 0 0 24px 5px;" class="btn btn-dark btn-sm" (click)="deleteOrder(i)" type="button">X</button>
                 </div>
@@ -36,8 +36,8 @@
             <button (click)="addOrder()" mdbBtn color="dark"  type="button">Add Order</button>
         </div>
         
-        <button [disabled]="!isFormValid" mdbBtn color="info" block="true" class="my-4" type="submit">Create Customer</button>
-        
+            <button [disabled]="!isFormValid" mdbBtn color="info" block="true" class="my-4" type="submit">Create Customer</button>
+
     </form>
 
 </div>

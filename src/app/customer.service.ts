@@ -18,5 +18,9 @@ export class CustomerService {
   public getCustomerInfo(){
     return this.http.get(this.REST_API + "/customer/info/" + this.index)
   }
+
+  public addCustomer(body, headers){
+    return this.http.post(this.REST_API + "/customer/add", body, {headers})
+  }
   
 }

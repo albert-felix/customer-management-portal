@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import {HttpHeaders} from '@angular/common/http'
+import { CustomerService } from 'src/app/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-new',
@@ -17,16 +20,20 @@ export class CustomerNewComponent implements OnInit {
     phone: new FormControl(""),
     orders: new FormArray([
       new FormGroup({
-        order: new FormControl(),
+        item: new FormControl(),
         price: new FormControl()
       })
     ])
   });
   isFormValid: boolean;
+  isNewCustomer: boolean = true;
 
-  constructor() { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.router.url !== '/new-customer'){
+      this.isNewCustomer = false;
+    }
   }
 
   ngDoCheck(){
@@ -34,6 +41,16 @@ export class CustomerNewComponent implements OnInit {
   }
 
   addCustomer(){
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    const body = this.customerForm.value;
+    this.customerService.addCustomer(body, headers).subscribe(data => {
+      if(data['status'] === "SUCCESS"){
+        alert("Customer Successfully Added")
+      }
+      else{
+        alert("Something Went Wrong")
+      }
+    })
     console.log(this.customerForm.value)
   }
 
@@ -43,7 +60,7 @@ export class CustomerNewComponent implements OnInit {
 
   addOrder(){
     this.orders.push(new FormGroup({
-      order: new FormControl(),
+      item: new FormControl(),
       price: new FormControl()
     }))
   }
