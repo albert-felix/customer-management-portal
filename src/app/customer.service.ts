@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class CustomerService {
 
   private REST_API = "http://localhost:3000";
-  index: number;
+  id: number;
   isLoggedIn: boolean = false;
   isManager: boolean = false;
 
@@ -18,7 +18,7 @@ export class CustomerService {
   }
 
   public getCustomerInfo(){
-    return this.http.get(this.REST_API + "/customer/info/" + this.index)
+    return this.http.get(this.REST_API + "/customer/info/" + this.id)
   }
 
   public addCustomer(body, headers){
@@ -26,7 +26,7 @@ export class CustomerService {
   }
 
   public editCustomer(body, headers){
-    return this.http.post(this.REST_API + "/customer/edit/" + this.index, body, {headers})
+    return this.http.post(this.REST_API + "/customer/edit/" + this.id, body, {headers})
   }
 
   public loginUser(body, headers){

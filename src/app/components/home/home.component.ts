@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   login(){
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     const body = this.loginForm.value;
+    this.loginForm.reset();
     this.customerService.loginUser(body, headers).subscribe(data => {
       if(data['status'] === 'SUCCESS'){
         if(data['isManager']){
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
         // this.router.navigate(['/customer-list'])
       }
       else{
-        alert("Something went wrong")
+        alert("Login Failed. Check your mail and password")
       }
     })
   }

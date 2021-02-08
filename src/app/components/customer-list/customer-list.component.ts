@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/customer.service';
-import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -10,20 +9,37 @@ import { CustomerDetailComponent } from '../customer-detail/customer-detail.comp
 })
 export class CustomerListComponent implements OnInit {
 
-  customers : [];
+  customers : any[] = [];
+  search: string = '';
+  page: number = 1;
+  itemsPerPage: number = 6;
+  start: string = ''
 
   constructor(private customerService: CustomerService, 
     private router: Router) { }
 
   ngOnInit(): void {
-    this.customerService.getCustomers().subscribe(data => {
-      this.customers = data['customers']
+    this.getCustomerList()
+  }
+
+  getCustomerList(){
+        this.customerService.getCustomers().subscribe(data => {
+          this.customers = data['customers']
     })
   }
 
   getCustomerInfo(index: number){
-    this.customerService.index = index;
-    this.router.navigate(['/customer-detail/'+index]);
+    let id = this.customers[((this.page-1) *this.itemsPerPage) + index]['id']
+    this.customerService.id = id
+    this.router.navigate(['/customer-detail/'+id]);
+  }
+
+  handlePageChange(event){
+    this.page = event;
+  }
+
+  searchCustomer(){
+    this.search = this.start
   }
 
 }
