@@ -28,18 +28,13 @@ export class CustomerListComponent implements OnInit {
     })
   }
 
-  getCustomerInfo(index: number){
-    let id = this.customers[((this.page-1) *this.itemsPerPage) + index]['id']
+  getCustomerInfo(id: number){
     this.customerService.id = id
     this.router.navigate(['/customer-detail/'+id]);
   }
 
   handlePageChange(event){
     this.page = event;
-  }
-
-  searchCustomer(){
-    this.search = this.start
   }
 
 }

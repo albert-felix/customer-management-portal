@@ -12,6 +12,7 @@ import { CustomerService } from 'src/app/customer.service';
 export class CustomerEditComponent implements OnInit {
 
   customerForm: FormGroup = new FormGroup({
+    id: new FormControl(""),
     name: new FormControl(""),
     age: new FormControl(""),
     gender: new FormControl(""),
@@ -62,6 +63,7 @@ export class CustomerEditComponent implements OnInit {
       })
 
       this.customerForm = new FormGroup({
+        id: new FormControl(customer.id),
         name: new FormControl(customer.name),
         age: new FormControl(customer.age),
         gender: new FormControl(customer.gender),
