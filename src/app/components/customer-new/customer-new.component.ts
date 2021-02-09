@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import {HttpHeaders} from '@angular/common/http'
 import { CustomerService } from 'src/app/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-new',
@@ -26,7 +27,7 @@ export class CustomerNewComponent implements OnInit {
   });
   isFormValid: boolean;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +42,7 @@ export class CustomerNewComponent implements OnInit {
     this.customerService.addCustomer(body, headers).subscribe(data => {
       if(data['status'] === "SUCCESS"){
         alert("Customer Successfully Added")
+        this.router.navigate(['/customer-list'])
       }
       else{
         alert("Something Went Wrong")

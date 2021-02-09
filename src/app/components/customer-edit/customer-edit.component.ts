@@ -81,6 +81,7 @@ export class CustomerEditComponent implements OnInit {
     this.customerService.editCustomer(body, headers).subscribe(data => {
       if(data['status'] == 'SUCCESS'){
         alert("Customer Information Updated Successfully")
+        this.router.navigate(['/customer-list'])
       }
       else{
         alert("Something Went Wrong")
